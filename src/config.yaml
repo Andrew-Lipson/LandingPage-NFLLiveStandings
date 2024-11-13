@@ -1,0 +1,40 @@
+site:
+  name: NFL Live Standings
+  site: 'https://nfllivestandings.com'
+  base: '/'
+  trailingSlash: false
+
+  googleSiteVerificationId: orcPxI47GSa-cRvY11tUe6iGg2IO_RPvnA1q95iEM3M
+
+# Default SEO metadata
+metadata:
+  title:
+    default: NFL Live Standings
+    template: '%s'
+  description: "Shows the Live NFL Standings for Division, Conference and the Draft Order in realtime while a match is in progress"
+  robots:
+    index: true
+    follow: true
+  openGraph:
+    site_name: NFL Live Standings
+    images:
+      - url: '~/assets/images/NFL-Football.jpeg'
+        width: 1200
+        height: 628
+    type: website
+  twitter:
+    handle: '@onwidget'
+    site: '@onwidget'
+    cardType: summary_large_image
+
+i18n:
+  language: en
+  textDirection: ltr
+
+analytics:
+  vendors:
+    googleAnalytics:
+      id: null # or "G-XXXXXXXXXX"
+
+ui:
+  theme: 'system' # Values: "system" | "light" | "dark" | "light:only" | "dark:only"

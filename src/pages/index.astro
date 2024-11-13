@@ -1,0 +1,96 @@
+---
+import Features3 from '~/components/widgets/Features3.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Hero2 from '~/components/widgets/Hero2.astro';
+import Steps2 from '~/components/widgets/Steps2.astro';
+import Layout from '~/layouts/PageLayout.astro';
+
+const metadata = {
+  title: 'NFL Live Standings',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Widget ******************* -->
+
+  <Hero
+    title="Welcome to <br> NFL LIVE STANDINGS"
+    subtitle="NFL Live Standings is the first website to show users the NFL standings for each division, conference, and the draft order in real-time. When there is a match in progress it will calculate the standings as if all matches in progress finish with the current scores. Below is an example of what NFL Live Standings showed during the last 2023 regular season match between Miami and Buffalo with Miami leading 14-7"
+    actions={[
+      { variant: 'primary', text: 'Enter', href: 'https://standings.nfllivestandings.com', icon: 'tabler:square-rounded-arrow-right' },
+    ]}
+    image={{
+      src: '~/assets/images/Conference.png',
+      alt: 'Magnet attracting screws. Lead generation landing page demo',
+    }}
+  />
+
+  <!-- Features3 Widget ************** -->
+
+  <Features3
+    title="Our Standings"
+    subtitle="There are 3 different live standings to view, all being calculated by following the official tiebreaker procedures found here:<br> <a style='text-decoration: underline;' href='https://www.nfl.com/standings/tie-breaking-procedures' target='_blank'>https://www.nfl.com/standings/tie-breaking-procedures</a>"
+    columns={3}
+    isBeforeContent={true}
+    isAfterContent={true}
+    items={[
+      {
+        title: 'Division',
+        description:
+          'We show all 8 division and indicate which team is leading. Showing only the main statistics that matter for the division race',
+        icon: 'tabler:template',
+      },
+      {
+        title: 'Conference',
+        description:
+          'We show both the AFC and NFC standings and which teams are currently in a playoff position. We only show the statistics that matter for the conference standings (No Division record is used)',
+        icon: 'tabler:template',
+      },
+      {
+        title: 'Draft Order',
+        description:
+          "We show the live draft order, calculating the SOS with teams they have played, not using future played teams (different from <a style='text-decoration: underline;' href='https://tankathon.com/nfl' target='_blank'>tankathon.com/nfl</a>)",
+        icon: 'tabler:template',
+      },
+    ]}
+  />
+
+    <Features3
+    columns={3}
+    isBeforeContent={true}
+    isAfterContent={true}
+    items={[]}
+    image={{ src: '~/assets/images/DraftOrder.png', alt: 'AstroWind Hero Image' }}
+  />
+
+
+  <!-- Steps2 Widget ****************** -->
+
+  <Steps2
+    title="Features"
+    subtitle="We are continuely trying to upgrade our website and implement new feature that will benifit the end user. Earlier this year we added tiebreaker reason so that when 2 or more teams have the same percentage NFL Live Standings will display the reason that one team is above the other. We also have many other features in the pipeline coming soon"
+    items={[
+      {
+        title: 'Toggle between live and current standings',
+      },
+      {
+        title: 'Tiebreaker reason update live too',
+      },
+      {
+        title: 'Playoff scenarios [Coming Soon]',
+      },
+    ]}
+  />
+
+    <Hero2
+    title="NFL LIVE STANDINGS"
+    subtitle="Be the first one to know the standings before the game ends by visiting NFL LIVE STANDINGS now!"
+    actions={[
+      { variant: 'primary', text: 'Enter', href: 'https://standings.nfllivestandings.com', icon: 'tabler:square-rounded-arrow-right' },
+    ]}
+    image={{
+      src: '~/assets/images/Division.png',
+      alt: 'Store with a Coming Soon sign. Pre-launch Landing Page',
+    }}
+  />
+</Layout>
