@@ -15,7 +15,7 @@ const metadata = {
 
   <Hero
     title="NFL LIVE STANDINGS"
-    subtitle="NFL Live Standings is the first website that provides NFL standings in <strong>real-time</strong>.<br>See the standings as if all matches in progress finish with the current scores.<br>Supports division, conference, and draft order."
+    subtitle="NFL Live Standings is the first website that provides NFL standings in <strong>real-time</strong>.<br>See the standings as if all matches in progress finish with the current scores.<br>Supports all AFC and NFC division and conference standings along with the first round draft order."
     actions={[
       { variant: 'primary', text: 'Enter', href: 'https://standings.nfllivestandings.com', icon: 'tabler:square-rounded-arrow-right' },
     ]}
@@ -49,7 +49,7 @@ const metadata = {
       {
         title: 'Draft Order',
         description:
-          "We show the live draft order, calculating the SOS with teams they have played, not using future played teams (different from <a style='text-decoration: underline;' href='https://tankathon.com/nfl' target='_blank'>tankathon.com/nfl</a>)",
+          "We show the live draft order, calculated with either the 'Current SOS' from teams they have already played, or 'Season SOS' using all 17 scheduled games. Updates throughout the playoffs and displays first round trades",
         icon: 'tabler:template',
       },
     ]}
@@ -68,16 +68,16 @@ const metadata = {
 
   <Steps2
     title="Features"
-    subtitle="We are continually trying to upgrade our website and implement new features that will benefit the end user. Earlier this year we added tiebreaker reason so that when 2 or more teams have the same percentage NFL Live Standings will display the reason that one team is above the other. We also have many other features in the pipeline coming soon"
+    subtitle="We are continually trying to upgrade our website and implement new features that will benefit the end user. Earlier this year we added SOS Season as a toggle in settings, so to calculate the Draft Order, Conference and Division standings with both the teams current SOS or their 17 game season SOS. We also have many other features in the pipeline coming soon"
     items={[
       {
         title: 'Toggle between live and current standings',
       },
       {
-        title: 'Tiebreaker reason update live too',
+        title: 'Toggle between SOS current and SOS season',
       },
       {
-        title: 'Playoff scenarios [Coming Soon]',
+        title: 'Show first round draft pick trades',
       },
     ]}
   />
