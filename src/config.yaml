@@ -11,7 +11,7 @@ metadata:
   title:
     default: NFL Live Standings
     template: '%s'
-  description: "Shows the Live NFL Standings for Division, Conference and the Draft Order in realtime while a match is in progress"
+  description: 'Shows the Live NFL Standings for Division, Conference and the Draft Order in realtime while a match is in progress'
   robots:
     index: true
     follow: true
