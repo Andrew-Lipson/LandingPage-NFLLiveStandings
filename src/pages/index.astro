@@ -1,105 +1,237 @@
 ---
-import Features3 from '~/components/widgets/Features3.astro';
-import Hero from '~/components/widgets/Hero.astro';
-import Hero2 from '~/components/widgets/Hero2.astro';
-import Steps2 from '~/components/widgets/Steps2.astro';
+import BrandMark from '~/components/BrandMark.astro';
 import Layout from '~/layouts/PageLayout.astro';
+import '~/assets/styles/landing.css';
 
+const appUrl = 'https://standings.nfllivestandings.com';
 const metadata = {
-  title: 'NFL Live Standings',
+  title: 'NFL Live Standings | Real-Time NFL Standings',
+  description:
+    'The only NFL standings app that recalculates division, conference, playoff, and draft order positions while games are still being played.',
 };
 ---
 
 <Layout metadata={metadata}>
-  <!-- Hero Widget ******************* -->
+  <div class="site-shell">
+    <header class="site-header">
+      <nav class="nav container" aria-label="Main navigation">
+        <a class="brand" href="#top" aria-label="NFL Live Standings home">
+          <BrandMark class="brand-mark" />
+          <span>NFL <span class="brand-live">Live</span> Standings</span>
+        </a>
+        <div class="nav-links">
+          <a href="#how-it-works">How it works</a>
+          <a href="#standings">Standings</a>
+          <a href="#app">The app</a>
+          <button
+            class="theme-toggle"
+            type="button"
+            data-aw-toggle-color-scheme
+            aria-label="Toggle dark and light mode"
+          >
+            <svg
+              class="sun-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              aria-hidden="true"
+            >
+              <circle cx="12" cy="12" r="4"></circle><path
+                d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"
+              ></path>
+            </svg>
+            <svg
+              class="moon-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              aria-hidden="true"
+            >
+              <path d="M20.2 15.4A8.5 8.5 0 0 1 8.6 3.8 8.5 8.5 0 1 0 20.2 15.4Z"></path>
+            </svg>
+          </button>
+        </div>
+      </nav>
+    </header>
 
-  <Hero
-    title="NFL LIVE STANDINGS"
-    subtitle="NFL Live Standings is the first website that provides NFL standings in <strong>real-time</strong>.<br>See the standings as if all matches in progress finish with the current scores.<br>Supports all AFC and NFC division and conference standings along with the first round draft order."
-    actions={[
-      {
-        variant: 'primary',
-        text: 'Enter',
-        href: 'https://standings.nfllivestandings.com',
-        icon: 'tabler:square-rounded-arrow-right',
-      },
-    ]}
-    image={{
-      src: '~/assets/images/Conference.png',
-      alt: 'Magnet attracting screws. Lead generation landing page demo',
-    }}
-  />
+    <main id="top">
+      <section class="hero">
+        <div class="hero-grid container">
+          <div>
+            <div class="eyebrow"><span class="live-dot"></span> Built for game day</div>
+            <h1>Standings that move <span>before the clock stops.</span></h1>
+            <p class="hero-copy">
+              The only NFL standings app that recalculates the entire league <strong>in real time</strong>, while games
+              are still being played.
+            </p>
+            <div class="actions">
+              <a class="button button-primary" href={appUrl}>
+                View live standings
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"
+                  ><path d="m9 18 6-6-6-6"></path></svg
+                >
+              </a>
+              <a class="button button-secondary" href="#app">See the app</a>
+            </div>
+          </div>
 
-  <!-- Features3 Widget ************** -->
+          <div class="product-stage" aria-label="NFL Live Standings app preview">
+            <div class="browser">
+              <div class="browser-bar"><i></i><i></i><i></i><span>STANDINGS.NFLLIVESTANDINGS.COM</span></div>
+              <img
+                src="/screenshots/standings-desktop.png"
+                alt="NFL Live Standings division view showing team rankings and records"
+                width="1440"
+                height="1050"
+              />
+            </div>
+            <div class="floating-live"><span class="live-dot"></span> Updating live</div>
+          </div>
+        </div>
+      </section>
 
-  <Features3
-    title="Our Standings"
-    subtitle="There are 3 different live standings to view, all being calculated by following the official tiebreaker procedures found here:<br> <a style='text-decoration: underline;' href='https://www.nfl.com/standings/tie-breaking-procedures' target='_blank'>https://www.nfl.com/standings/tie-breaking-procedures</a>"
-    columns={3}
-    isBeforeContent={true}
-    isAfterContent={true}
-    items={[
-      {
-        title: 'Division',
-        description:
-          'We show all 8 division and indicate which team is leading. Showing only the main statistics that matter for the division race',
-        icon: 'tabler:template',
-      },
-      {
-        title: 'Conference',
-        description:
-          'We show both the AFC and NFC standings and which teams are currently in a playoff position. We only show the statistics that matter for the conference standings (No Division record is used)',
-        icon: 'tabler:template',
-      },
-      {
-        title: 'Draft Order',
-        description:
-          "We show the live draft order, calculated with either the 'Current SOS' from teams they have already played, or 'Season SOS' using all 17 scheduled games. Updates throughout the playoffs and displays first round trades",
-        icon: 'tabler:template',
-      },
-    ]}
-  />
+      <div class="trust-strip">
+        <div class="trust-grid container">
+          <div class="trust-item">
+            <strong>Every game, as it happens</strong><span
+              >Scores flow through to standings before the final whistle.</span
+            >
+          </div>
+          <div class="trust-item">
+            <strong>Official tiebreaker logic</strong><span
+              >Built around the NFL's published procedures, not guesswork.</span
+            >
+          </div>
+          <div class="trust-item">
+            <strong>One complete picture</strong><span>Division, conference, playoffs, and draft order together.</span>
+          </div>
+        </div>
+      </div>
 
-  <Features3
-    columns={3}
-    isBeforeContent={true}
-    isAfterContent={true}
-    items={[]}
-    image={{ src: '~/assets/images/DraftOrder.png', alt: 'AstroWind Hero Image' }}
-  />
+      <section class="section" id="how-it-works">
+        <div class="live-story container">
+          <div>
+            <p class="section-kicker">Live means live</p>
+            <h2 class="section-title">See the result before the result.</h2>
+            <p class="section-lede">
+              We project every in-progress game as if its current score were final, then recalculate every affected
+              position across the league. When a lead changes, the standings change with it.
+            </p>
+          </div>
+          <div class="comparison" aria-label="Example of teams changing position in live standings">
+            <div class="comparison-head">
+              <span>AFC playoff picture</span><span class="live-pill"><span class="live-dot"></span> 4 games live</span>
+            </div>
+            <div class="rank-row">
+              <span class="rank">5</span><span>Buffalo Bills</span><span class="movement">Up 2</span>
+            </div>
+            <div class="rank-row">
+              <span class="rank">6</span><span>Los Angeles Chargers</span><span class="movement">Up 1</span>
+            </div>
+            <div class="rank-row">
+              <span class="rank">7</span><span>Miami Dolphins</span><span class="movement down">Down 2</span>
+            </div>
+            <div class="rank-row">
+              <span class="rank">8</span><span>Cincinnati Bengals</span><span class="movement down">Down 1</span>
+            </div>
+          </div>
+        </div>
+      </section>
 
-  <!-- Steps2 Widget ****************** -->
+      <section class="section features-section" id="standings">
+        <div class="container">
+          <div class="features-head">
+            <div>
+              <p class="section-kicker">The whole league</p>
+              <h2 class="section-title">Three views. Zero spreadsheet energy.</h2>
+            </div>
+            <p class="section-lede">
+              Everything you need to understand what each snap means, presented in a fast, focused interface.
+            </p>
+          </div>
+          <div class="feature-grid">
+            <article class="feature-card">
+              <span class="feature-number">01 / DIVISION</span><h3>Every race, at a glance.</h3><p>
+                Follow all eight divisions with leaders, core records, strength of victory, and the stats that actually
+                decide the race.
+              </p>
+            </article>
+            <article class="feature-card">
+              <span class="feature-number">02 / CONFERENCE</span><h3>The playoff picture, now.</h3><p>
+                See the AFC and NFC order update as scores move, with playoff cut lines and live position changes made
+                obvious.
+              </p>
+            </article>
+            <article class="feature-card">
+              <span class="feature-number">03 / DRAFT ORDER</span><h3>Tomorrow's order, today.</h3><p>
+                Track all 32 picks, first-round trades, and current or full-season strength of schedule through the
+                playoffs.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
 
-  <Steps2
-    title="Features"
-    subtitle="We are continually trying to upgrade our website and implement new features that will benefit the end user. Earlier this year we added SOS Season as a toggle in settings, so to calculate the Draft Order, Conference and Division standings with both the teams current SOS or their 17 game season SOS. We also have many other features in the pipeline coming soon"
-    items={[
-      {
-        title: 'Toggle between live and current standings',
-      },
-      {
-        title: 'Toggle between SOS current and SOS season',
-      },
-      {
-        title: 'Show first round draft pick trades',
-      },
-    ]}
-  />
+      <section class="section" id="app">
+        <div class="container">
+          <div class="showcase-head">
+            <p class="section-kicker">Designed for the moment</p>
+            <h2 class="section-title">Fast to scan. Hard to stop checking.</h2>
+            <p class="section-lede">
+              A polished, responsive view built for the second screen, whether you're watching one game or the entire
+              slate.
+            </p>
+          </div>
+          <div class="screens">
+            <div class="desktop-shot">
+              <img
+                src="/screenshots/standings-desktop.png"
+                alt="Desktop view of NFL Live Standings"
+                width="1440"
+                height="1050"
+                loading="lazy"
+              />
+            </div>
+            <div class="mobile-shot">
+              <img
+                src="/screenshots/standings-mobile.png"
+                alt="Mobile view of NFL Live Standings"
+                width="430"
+                height="900"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
 
-  <Hero2
-    title="NFL LIVE STANDINGS"
-    subtitle="Be the first one to know the standings before the game ends by visiting NFL LIVE STANDINGS now!"
-    actions={[
-      {
-        variant: 'primary',
-        text: 'Enter',
-        href: 'https://standings.nfllivestandings.com',
-        icon: 'tabler:square-rounded-arrow-right',
-      },
-    ]}
-    image={{
-      src: '~/assets/images/Division.png',
-      alt: 'Store with a Coming Soon sign. Pre-launch Landing Page',
-    }}
-  />
+      <section class="cta">
+        <div class="cta-panel container">
+          <div>
+            <h2>Kickoff changes everything. Keep up.</h2><p>
+              Open the standings and watch the league move in real time.
+            </p>
+          </div>
+          <a class="button button-primary" href={appUrl}
+            >Open NFL Live Standings <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg
+            ></a
+          >
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer container">
+      <a class="brand" href="#top"
+        ><BrandMark class="brand-mark" /><span>NFL <span class="brand-live">Live</span> Standings</span></a
+      >
+      <span>Real-time NFL standings, built for game day.</span>
+    </footer>
+  </div>
 </Layout>
