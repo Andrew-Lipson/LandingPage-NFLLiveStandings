@@ -1,0 +1,35 @@
+---
+interface Props {
+  lightSrc: string;
+  darkSrc: string;
+  alt: string;
+  width: number;
+  height: number;
+  eager?: boolean;
+}
+
+const { lightSrc, darkSrc, alt, width, height, eager = false } = Astro.props;
+const style = `--screenshot-light: url('${lightSrc}'); --screenshot-dark: url('${darkSrc}'); aspect-ratio: ${width} / ${height};`;
+---
+
+<div class:list={['theme-screenshot', { 'is-loaded': eager }]} role="img" aria-label={alt} style={style}></div>
+
+<script>
+  const screenshots = document.querySelectorAll<HTMLElement>('.theme-screenshot:not(.is-loaded)');
+
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('is-loaded');
+          observer.unobserve(entry.target);
+        });
+      },
+      { rootMargin: '600px 0px' }
+    );
+    screenshots.forEach((screenshot) => observer.observe(screenshot));
+  } else {
+    screenshots.forEach((screenshot) => screenshot.classList.add('is-loaded'));
+  }
+</script>

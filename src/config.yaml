@@ -11,7 +11,7 @@ metadata:
   title:
     default: NFL Live Standings
     template: '%s'
-  description: 'Shows the Live NFL Standings for Division, Conference and the Draft Order in realtime while a match is in progress'
+  description: 'Track live NFL standings while games are being played. See real-time division, conference, playoff and first-round draft order changes.'
   robots:
     index: true
     follow: true
@@ -23,8 +23,6 @@ metadata:
         height: 628
     type: website
   twitter:
-    handle: '@onwidget'
-    site: '@onwidget'
     cardType: summary_large_image
 
 i18n:
