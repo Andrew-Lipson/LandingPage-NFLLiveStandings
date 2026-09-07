@@ -470,17 +470,6 @@ body.landing-body {
   background: #07101e;
   box-shadow: 0 32px 64px -24px rgba(0, 0, 0, 0.75);
 }
-.mobile-shot::before {
-  position: absolute;
-  top: 7px;
-  left: 50%;
-  width: 32%;
-  height: 5px;
-  border-radius: 99px;
-  background: #1f2a3a;
-  content: '';
-  transform: translateX(-50%);
-}
 .draft-showcase {
   display: grid;
   grid-template-columns: minmax(280px, 0.72fr) minmax(0, 1.28fr);

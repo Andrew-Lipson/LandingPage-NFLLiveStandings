@@ -11,7 +11,7 @@ ${landing.intro}
 
 This website explains NFL Live Standings. The interactive app is a separate destination linked below.
 
-Live mode projects standings as if in-progress games ended with their current scores. Final mode uses completed games only. Current SOS means strength of schedule from games already played; Season SOS covers the full 17-game schedule.
+Live mode treats in-progress games as if they ended with their current scores. Final mode uses completed games only. Current SOS means strength of schedule from games already played; Season SOS covers the full 17-game schedule.
 
 ${landing.previewNote}
 
@@ -26,7 +26,7 @@ ${landing.previewNote}
 
 ## References
 
-- [Official NFL tiebreaking procedures](${landing.rulesUrl}): NFL division and conference tiebreak rules.
+- [Official NFL tiebreaking procedures](${landing.rulesUrl}): NFL division, conference and draft order tiebreak rules.
 `,
     { headers: { 'Content-Type': 'text/plain; charset=utf-8' } }
   );

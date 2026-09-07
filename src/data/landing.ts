@@ -8,7 +8,7 @@ export const landing = {
   title: 'Real-Time NFL Standings | NFL Live Standings',
   description: METADATA.description as string,
   intro:
-    'Follow realtime NFL standings as scores change, with division, conference, playoff and first-round draft order updates.',
+    'Follow realtime NFL standings as scores change, with division, conference and first-round draft order updates, giving you the full playoff picture.',
   rulesUrl: 'https://www.nfl.com/standings/tie-breaking-procedures',
   previewNote: 'Screenshots and example positions illustrate the app. Open the live standings to see current results.',
   features: [
@@ -22,22 +22,22 @@ export const landing = {
     {
       question: 'How do realtime NFL standings work?',
       answer:
-        'Live mode treats each in-progress score as final and recalculates affected standings as scores change. It shows the projected order if games ended with their current scores.',
+        'Live mode treats each in-progress score as final and recalculates affected standings as scores change. It shows the actual order if games ended with their current scores.',
     },
     {
       question: 'What is the difference between Live and Final standings?',
       answer:
-        'Live standings include projected results from games in progress. Final standings use only completed games. Switch between the two views in the app.',
+        'Live standings include results from games in progress, treated as final. Final standings use only completed games. Switch between the two views in the app.',
     },
     {
       question: 'How are tied teams ranked?',
       answer:
-        "The app follows NFL tiebreaker procedures for division and conference standings. Open a tied team's tiebreak details to see the reason behind its position.",
+        "The app follows NFL tiebreaker procedures for division, conference and draft order standings. Open a tied team's tiebreak details to see the reason behind its position.",
     },
     {
       question: 'What do Current SOS and Season SOS mean?',
       answer:
-        'SOS means strength of schedule. Current SOS uses games already played. Season SOS uses the full 17-game schedule. The draft-order view lets you switch between them.',
+        'SOS means strength of schedule. Current SOS uses games already played. Season SOS uses the full 17-game schedule. You can toggle between them in any view.',
     },
     {
       question: 'Does the draft order include traded picks?',

@@ -17,13 +17,13 @@ ${landing.intro}
 - Conference standings show the AFC and NFC order, playoff cutoff, live position movement, and clinch or elimination markers.
 - First-round draft order tracks pick ownership, including traded picks, with current and full-season strength of schedule options.
 
-The app works on desktop and mobile. Team, record and position data remain visible on mobile, with more tiebreaker detail available on desktop.
+The app works on desktop and mobile. Team, record and position data remain visible on mobile, with the same detail as desktop.
 
 ## Common questions
 
 ${landing.questions.map(({ question, answer }) => `### ${question}\n\n${answer}`).join('\n\n')}
 
-See the [official NFL tiebreaking procedures](${landing.rulesUrl}) for division and conference rules.
+See the [official NFL tiebreaking procedures](${landing.rulesUrl}) for division, conference and draft order rules.
 
 ## App previews
 
