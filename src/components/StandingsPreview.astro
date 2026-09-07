@@ -1,0 +1,540 @@
+---
+// Illustrative standings. Styling follows TeamCard and StandingsBoard in the UI app.
+const teams = [
+  {
+    key: 'BUF',
+    name: 'Buffalo Bills',
+    rank: 5,
+    movement: 2,
+    wins: 10,
+    losses: 5,
+    conference: '7-3',
+    sov: '.438',
+    sos: '.490',
+    color: '#00338d',
+    darkColor: '#0f64ff',
+  },
+  {
+    key: 'LAC',
+    name: 'Los Angeles Chargers',
+    rank: 6,
+    movement: 2,
+    wins: 9,
+    losses: 6,
+    conference: '6-4',
+    sov: '.422',
+    sos: '.502',
+    color: '#0080c6',
+    darkColor: '#0080c6',
+  },
+  {
+    key: 'MIA',
+    name: 'Miami Dolphins',
+    rank: 7,
+    movement: -2,
+    wins: 9,
+    losses: 6,
+    conference: '5-5',
+    sov: '.407',
+    sos: '.481',
+    color: '#008e97',
+    darkColor: '#008e97',
+  },
+  {
+    key: 'CIN',
+    name: 'Cincinnati Bengals',
+    rank: 8,
+    movement: -2,
+    wins: 8,
+    losses: 7,
+    conference: '5-5',
+    sov: '.458',
+    sos: '.520',
+    color: '#fb4f14',
+    darkColor: '#fb4f14',
+  },
+];
+---
+
+<figure class="standings-preview" aria-labelledby="standings-preview-caption">
+  <div class="preview-toolbar">
+    <span>Conference standings</span>
+    <span class="preview-live"><span aria-hidden="true"></span> Live example</span>
+  </div>
+  <div class="preview-board">
+    <h3 class="preview-heading">American Football Conference</h3>
+    <div class="preview-table-wrap">
+      <table>
+        <caption class="sr-only">Example AFC live standings, positions 5 through 8. Illustrative data.</caption>
+        <colgroup>
+          <col class="rank-column" />
+          <col class="team-column" />
+          <col class="record-column" />
+          <col class="stat-column" />
+          <col class="conference-column" />
+          <col class="stat-column" />
+          <col class="stat-column" />
+        </colgroup>
+        <thead>
+          <tr>
+            <th scope="col"><span class="sr-only">Rank</span></th>
+            <th scope="col" class="team-heading">Team</th>
+            <th scope="col">Record</th>
+            <th scope="col"><abbr title="Win percentage">Pct</abbr></th>
+            <th scope="col"><abbr title="Conference record">Conf</abbr></th>
+            <th scope="col"><abbr title="Strength of victory">SOV</abbr></th>
+            <th scope="col"><abbr title="Strength of schedule">SOS</abbr></th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            teams.map((team) => (
+              <Fragment>
+                <tr class="preview-row" style={`--team-light: ${team.color}; --team-dark: ${team.darkColor};`}>
+                  <td class="rank-cell">
+                    <span class="preview-seed">
+                      {team.rank}
+                      <span
+                        class:list={['preview-movement', { down: team.movement < 0 }]}
+                        role="img"
+                        aria-label={`${team.movement > 0 ? 'Up' : 'Down'} ${Math.abs(team.movement)} positions on live results`}
+                      >
+                        <svg viewBox="0 0 8 8" aria-hidden="true">
+                          <path
+                            d="m1.5 5.25 2.5-2.5 2.5 2.5"
+                            transform={team.movement < 0 ? 'rotate(180 4 4)' : undefined}
+                          />
+                        </svg>
+                        <span aria-hidden="true">{Math.abs(team.movement)}</span>
+                      </span>
+                    </span>
+                  </td>
+                  <th scope="row" class="team-cell" aria-label={team.name}>
+                    <span class="team-identity" aria-hidden="true">
+                      <span class="team-logo">
+                        <img
+                          src={`/team-logos/${team.key}.png`}
+                          alt=""
+                          width="40"
+                          height="40"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      </span>
+                      <span class="team-name">{team.name}</span>
+                      <span class="team-abbreviation">{team.key}</span>
+                      <span class="team-live-dot" />
+                    </span>
+                  </th>
+                  <td class="record-cell">
+                    {[
+                      { value: team.wins, changed: team.movement > 0 },
+                      { value: '-', changed: false },
+                      { value: team.losses, changed: team.movement < 0 },
+                    ].map(({ value, changed }) => (
+                      <span class:list={{ 'changed-stat': changed }}>{value}</span>
+                    ))}
+                  </td>
+                  <td class="changed-stat">{(team.wins / (team.wins + team.losses)).toFixed(3).replace(/^0/, '')}</td>
+                  <td>{team.conference}</td>
+                  <td>{team.sov}</td>
+                  <td>{team.sos}</td>
+                </tr>
+                {team.rank === 7 && (
+                  <tr class="cutoff-row">
+                    <td colspan="7">
+                      <div class="preview-cutoff">
+                        <span class="cutoff-line" />
+                        <span class="cutoff-label">
+                          <svg
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.6"
+                            aria-hidden="true"
+                          >
+                            <path d="M4 22V3m0 0c5-4 11 4 16 0v12c-5 4-11-4-16 0" />
+                          </svg>{' '}
+                          Playoffs
+                        </span>
+                        <span class="cutoff-line" />
+                      </div>
+                    </td>
+                  </tr>
+                )}
+              </Fragment>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <figcaption id="standings-preview-caption">
+    Illustrative data. Arrows show positions gained or lost on live results.
+  </figcaption>
+</figure>
+
+<style>
+  @font-face {
+    font-family: 'Preview Sora';
+    src: url('../assets/fonts/sora-latin-800.woff2') format('woff2');
+    font-weight: 800;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Preview Barlow';
+    src: url('../assets/fonts/barlow-semi-condensed-latin-700.woff2') format('woff2');
+    font-weight: 700;
+    font-display: swap;
+  }
+  .standings-preview {
+    --preview-card: #fff;
+    --preview-line: hsl(214 26% 87%);
+    --preview-positive: #047857;
+    --preview-negative: #be123c;
+    container-type: inline-size;
+    min-width: 0;
+    margin: 0;
+    color: var(--ink);
+  }
+  :global(.dark) .standings-preview {
+    --preview-card: hsl(219 40% 11%);
+    --preview-line: rgba(255, 255, 255, 0.09);
+    --preview-positive: #6ee7b7;
+    --preview-negative: #fda4af;
+  }
+  .preview-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 12px;
+    color: var(--muted-ink);
+    font-size: 11px;
+    font-weight: 700;
+  }
+  .preview-live {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 9px;
+    border: 1px solid rgb(52 211 153 / 30%);
+    border-radius: 999px;
+    background: rgb(52 211 153 / 15%);
+    color: var(--preview-positive);
+    font-size: 10px;
+  }
+  .preview-live > span,
+  .team-live-dot {
+    width: 5px;
+    height: 5px;
+    flex: none;
+    border-radius: 50%;
+    background: #34d399;
+    box-shadow: 0 0 6px rgb(52 211 153 / 50%);
+  }
+  .preview-board {
+    overflow: hidden;
+    border: 1px solid var(--preview-line);
+    border-radius: 18px;
+    background: var(--preview-card);
+    box-shadow:
+      0 1px 2px rgb(16 24 40 / 4%),
+      0 20px 44px -34px rgb(16 24 40 / 35%);
+  }
+  :global(.dark) .preview-board {
+    background: linear-gradient(180deg, rgb(255 255 255 / 5.5%), rgb(255 255 255 / 2%));
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 5%),
+      0 26px 60px -34px rgb(0 0 0 / 85%);
+  }
+  .preview-heading {
+    margin: 0;
+    padding: 12px 16px;
+    border-bottom: 1px solid rgb(248 113 113 / 20%);
+    background: linear-gradient(90deg, rgb(220 38 38 / 25%), rgb(239 68 68 / 10%), transparent);
+    font:
+      800 13px/1.4 'Preview Sora',
+      'Inter Variable',
+      sans-serif;
+    letter-spacing: -0.03em;
+  }
+  .preview-table-wrap {
+    padding: 7px 10px 5px;
+  }
+  table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 6px;
+    table-layout: fixed;
+  }
+  .rank-column {
+    width: 46px;
+  }
+  .record-column {
+    width: 54px;
+  }
+  .stat-column {
+    width: 42px;
+  }
+  .conference-column {
+    width: 46px;
+  }
+  thead th {
+    padding: 0 2px 2px;
+    color: var(--muted-ink);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-align: center;
+    text-transform: uppercase;
+  }
+  abbr {
+    text-decoration: none;
+  }
+  thead .team-heading {
+    text-align: left;
+  }
+  .preview-row {
+    --team-accent: var(--team-light);
+    background: linear-gradient(180deg, #fff, hsl(214 42% 99%));
+  }
+  :global(.dark) .preview-row {
+    --team-accent: var(--team-dark);
+    background: linear-gradient(180deg, rgb(255 255 255 / 6%), rgb(255 255 255 / 2%));
+  }
+  .preview-row > td,
+  .preview-row > th {
+    height: 48px;
+    padding: 4px 2px;
+    border-block: 1px solid rgb(52 211 153 / 40%);
+    background: rgb(52 211 153 / 4.5%);
+    font:
+      700 15px/1.2 'Preview Barlow',
+      'Inter Variable',
+      sans-serif;
+    font-variant-numeric: tabular-nums;
+    text-align: center;
+  }
+  .preview-row > :first-child {
+    position: relative;
+    border-left: 1px solid rgb(52 211 153 / 40%);
+    border-radius: 12px 0 0 12px;
+  }
+  .rank-cell::before {
+    position: absolute;
+    inset: 6px auto 6px 0;
+    width: 4px;
+    border-radius: 3px;
+    background: linear-gradient(180deg, var(--team-accent), color-mix(in srgb, var(--team-accent) 65%, black));
+    content: '';
+  }
+  .preview-row > :last-child {
+    border-right: 1px solid rgb(52 211 153 / 40%);
+    border-radius: 0 12px 12px 0;
+  }
+  .preview-seed {
+    position: relative;
+    display: inline-flex;
+    width: 28px;
+    height: 28px;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgb(0 0 0 / 10%);
+    border-radius: 8px;
+    background: rgb(0 0 0 / 5%);
+    font-size: 16px;
+  }
+  :global(.dark) .preview-seed {
+    border-color: rgb(255 255 255 / 15%);
+    background: rgb(255 255 255 / 10%);
+  }
+  .preview-movement {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    display: inline-flex;
+    align-items: center;
+    color: var(--preview-positive);
+    font-size: 11px;
+    line-height: 1;
+    text-shadow:
+      -1px 0 var(--preview-card),
+      1px 0 var(--preview-card),
+      0 -1px var(--preview-card),
+      0 1px var(--preview-card);
+  }
+  .preview-movement.down {
+    color: var(--preview-negative);
+  }
+  .preview-movement svg {
+    width: 10px;
+    height: 10px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    filter: drop-shadow(0 1px var(--preview-card));
+  }
+  .team-identity {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    min-width: 0;
+    text-align: left;
+    font:
+      800 11px/1.4 'Preview Sora',
+      'Inter Variable',
+      sans-serif;
+  }
+  .team-logo {
+    display: grid;
+    width: 28px;
+    height: 28px;
+    flex: none;
+    place-items: center;
+    border: 1px solid color-mix(in srgb, var(--team-accent) 35%, transparent);
+    border-radius: 10px;
+    background: radial-gradient(
+      120% 120% at 30% 20%,
+      color-mix(in srgb, var(--team-accent) 22%, transparent),
+      transparent 70%
+    );
+  }
+  .team-logo img {
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+  }
+  .team-abbreviation {
+    display: none;
+  }
+  .preview-row > .record-cell {
+    font-size: 18px;
+  }
+  .changed-stat {
+    color: var(--preview-positive);
+  }
+  .preview-cutoff {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 3px 8px;
+  }
+  .cutoff-line {
+    height: 1px;
+    flex: 1;
+    background: linear-gradient(90deg, transparent, rgb(213 10 10 / 40%));
+  }
+  .cutoff-line:last-child {
+    transform: rotate(180deg);
+  }
+  .cutoff-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 8px;
+    border: 1px solid rgb(213 10 10 / 25%);
+    border-radius: 999px;
+    background: rgb(213 10 10 / 10%);
+    color: #b91c1c;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+  :global(.dark) .cutoff-label {
+    color: #fca5a5;
+  }
+  .cutoff-label svg {
+    width: 12px;
+    height: 12px;
+  }
+  figcaption {
+    margin-top: 12px;
+    color: var(--muted-ink);
+    font-size: 11px;
+    line-height: 1.6;
+  }
+  @container (max-width: 520px) {
+    .preview-board {
+      border-radius: 12px;
+    }
+    .preview-heading {
+      padding: 10px 12px;
+      font-size: 11px;
+    }
+    .preview-table-wrap {
+      padding: 4px;
+    }
+    .rank-column {
+      width: 32px;
+    }
+    .record-column {
+      width: 40px;
+    }
+    .stat-column {
+      width: 32px;
+    }
+    .conference-column {
+      width: 38px;
+    }
+    .preview-row > td,
+    .preview-row > th {
+      height: 40px;
+      padding-inline: 1px;
+      font-size: 13px;
+    }
+    .preview-row > .record-cell {
+      font-size: 15px;
+    }
+    thead th {
+      font-size: 8px;
+      letter-spacing: 0.03em;
+    }
+    .preview-seed {
+      width: 23px;
+      height: 23px;
+      font-size: 14px;
+      border-radius: 7px;
+    }
+    .preview-movement {
+      top: -5px;
+      right: -5px;
+      font-size: 10px;
+    }
+    .preview-movement svg {
+      width: 8px;
+      height: 8px;
+    }
+    .team-identity {
+      gap: 4px;
+      font-size: 11px;
+    }
+    .team-logo {
+      width: 18px;
+      height: 18px;
+      border: 0;
+      border-radius: 0;
+      background: none;
+    }
+    .team-logo img {
+      width: 18px;
+      height: 18px;
+    }
+    .team-name {
+      display: none;
+    }
+    .team-abbreviation {
+      display: inline;
+    }
+    .team-live-dot {
+      width: 4px;
+      height: 4px;
+    }
+    .preview-toolbar {
+      font-size: 10px;
+    }
+  }
+</style>

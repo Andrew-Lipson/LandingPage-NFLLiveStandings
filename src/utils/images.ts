@@ -73,6 +73,7 @@ export const adaptOpenGraphImages = async (
 
         if (typeof resolvedImage === 'string' && resolvedImage.startsWith('/')) {
           return {
+            ...image,
             url: String(new URL(resolvedImage, astroSite)),
             width: image.width,
             height: image.height,
@@ -99,6 +100,7 @@ export const adaptOpenGraphImages = async (
 
         if (typeof optimizedImage === 'object') {
           return {
+            ...image,
             url:
               'src' in optimizedImage && typeof optimizedImage.src === 'string'
                 ? String(new URL(optimizedImage.src, astroSite))

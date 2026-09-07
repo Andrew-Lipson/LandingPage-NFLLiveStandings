@@ -1,35 +1,61 @@
 ---
+import { getImage } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
 interface Props {
-  lightSrc: string;
-  darkSrc: string;
+  lightSrc: ImageMetadata;
+  darkSrc: ImageMetadata;
   alt: string;
-  width: number;
-  height: number;
+  sizes: string;
   eager?: boolean;
 }
 
-const { lightSrc, darkSrc, alt, width, height, eager = false } = Astro.props;
-const style = `--screenshot-light: url('${lightSrc}'); --screenshot-dark: url('${darkSrc}'); aspect-ratio: ${width} / ${height};`;
+const { lightSrc, darkSrc, alt, sizes, eager = false } = Astro.props;
+const [light, dark] = await Promise.all(
+  [lightSrc, darkSrc].map((src) =>
+    getImage({
+      src,
+      widths: [...[320, 480, 768, 1024].filter((width) => width < src.width), src.width],
+      format: 'webp',
+      quality: 85,
+    })
+  )
+);
 ---
 
-<div class:list={['theme-screenshot', { 'is-loaded': eager }]} role="img" aria-label={alt} style={style}></div>
+<picture class="theme-screenshot">
+  <source
+    data-theme-dark
+    media="(prefers-color-scheme: dark)"
+    srcset={dark.srcSet.attribute}
+    {sizes}
+    type="image/webp"
+  />
+  <img
+    src={light.src}
+    srcset={light.srcSet.attribute}
+    {sizes}
+    {alt}
+    width={lightSrc.width}
+    height={lightSrc.height}
+    loading={eager ? 'eager' : 'lazy'}
+    fetchpriority={eager ? 'high' : 'auto'}
+    decoding="async"
+  />
+</picture>
 
 <script>
-  const screenshots = document.querySelectorAll<HTMLElement>('.theme-screenshot:not(.is-loaded)');
+  const syncScreenshots = () => {
+    const isDark = document.documentElement.classList.contains('dark');
+    document.querySelectorAll<HTMLSourceElement>('[data-theme-dark]').forEach((source) => {
+      source.media = isDark ? 'all' : 'not all';
+    });
+  };
 
-  if ('IntersectionObserver' in window) {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          entry.target.classList.add('is-loaded');
-          observer.unobserve(entry.target);
-        });
-      },
-      { rootMargin: '600px 0px' }
-    );
-    screenshots.forEach((screenshot) => observer.observe(screenshot));
-  } else {
-    screenshots.forEach((screenshot) => screenshot.classList.add('is-loaded'));
-  }
+  syncScreenshots();
+  new MutationObserver(syncScreenshots).observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ['class'],
+  });
+  document.addEventListener('astro:page-load', syncScreenshots);
 </script>

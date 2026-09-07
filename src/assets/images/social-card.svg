@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#07101e"/>
+  <path d="M0 0h1200v6H0z" fill="#34d399"/>
+  <g font-family="Arial, sans-serif">
+    <text x="130" y="82" fill="#edf2f8" font-size="22" font-weight="700">NFL LIVE STANDINGS</text>
+    <text x="56" y="213" fill="#edf2f8" font-size="58" font-weight="700">Real-time NFL</text>
+    <text x="56" y="281" fill="#34d399" font-size="58" font-weight="700">standings.</text>
+    <text x="56" y="350" fill="#c5d0df" font-size="25">Updated during every game.</text>
+    <text x="56" y="415" fill="#c5d0df" font-size="21">Division and conference standings</text>
+    <text x="56" y="450" fill="#c5d0df" font-size="21">Playoff positions and draft order</text>
+    <text x="56" y="568" fill="#34d399" font-size="23">nfllivestandings.com</text>
+    <rect x="588" y="116" width="572" height="410" rx="16" fill="#101927" stroke="#334155"/>
+    <circle cx="610" cy="141" r="4" fill="#34d399"/>
+    <text x="625" y="146" fill="#c5d0df" font-size="13">Division view preview</text>
+  </g>
+</svg>

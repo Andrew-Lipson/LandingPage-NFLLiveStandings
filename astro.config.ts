@@ -26,7 +26,9 @@ export default defineConfig({
     tailwind({
       applyBaseStyles: false,
     }),
-    sitemap(),
+    sitemap({
+      filter: (page) => new URL(page).pathname === '/',
+    }),
     mdx(),
     icon({
       include: {
