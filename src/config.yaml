@@ -11,20 +11,20 @@ metadata:
   title:
     default: NFL Live Standings
     template: '%s'
-  description: 'Shows the Live NFL Standings for Division, Conference and the Draft Order in realtime while a match is in progress'
+  description: 'Track real-time NFL standings during every game. Follow live division, conference, playoff and first-round draft order changes as scores update.'
   robots:
     index: true
     follow: true
   openGraph:
     site_name: NFL Live Standings
+    locale: en_US
     images:
-      - url: '~/assets/images/NFL-Football.jpeg'
+      - url: '/og-image.png'
         width: 1200
-        height: 628
+        height: 630
+        alt: 'NFL Live Standings with a preview of division standings in the app'
     type: website
   twitter:
-    handle: '@onwidget'
-    site: '@onwidget'
     cardType: summary_large_image
 
 i18n:

@@ -35,12 +35,13 @@ const { language, textDirection } = I18N;
     <Metadata {...metadata} />
     <SiteVerification />
     <Analytics />
+    <slot name="head" />
 
     <!-- Comment the line below to disable View Transitions -->
     <ViewTransitions fallback="swap" />
   </head>
 
-  <body class="antialiased text-default bg-page tracking-tight">
+  <body class="landing-body antialiased text-default bg-page tracking-tight">
     <slot />
 
     <BasicScripts />
